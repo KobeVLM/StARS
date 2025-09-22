@@ -1,7 +1,7 @@
 # StARS - Student Django Project
 
 ## About
-[Project description placeholder - describe what StARS does and its purpose]
+Empowering students and emerging artists to **practice**, **share**, and **grow** in a supportive, collaborative, and fun environment—without the pressure of competition.
 
 ## Prerequisites
 Before you begin, ensure you have the following installed on your system:
