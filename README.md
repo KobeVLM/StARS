@@ -20,13 +20,13 @@ cd StARS
 ### 2. Create a Virtual Environment
 ```bash
 # Create virtual environment
+cd stars_project
+
 python -m venv venv
 
 # Activate virtual environment
 # On Windows:
 venv\Scripts\activate
-# On macOS/Linux:
-source venv/bin/activate
 ```
 
 ### 3. Install Dependencies
@@ -55,20 +55,6 @@ python manage.py runserver
 ```
 
 The application will be available at `http://127.0.0.1:8000/`
-
-## Project Structure
-```
-StARS/
-├── README.md
-├── stars_project/
-│   ├── manage.py
-│   └── stars/
-│       ├── __init__.py
-│       ├── settings.py
-│       ├── urls.py
-│       ├── wsgi.py
-│       └── asgi.py
-```
 
 ## Git Workflow Guidelines
 
@@ -118,6 +104,7 @@ Before creating a pull request, ensure you:
    ```
 
 3. **Write a clear PR description** that includes:
+
    - What changes were made
    - Why the changes were necessary
    - Any testing performed
