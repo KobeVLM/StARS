@@ -1,92 +1,86 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.urls import reverse
 
-def login_view(request):
-    """Handle user login"""
-    # Don't redirect if already authenticated, just show the login page with a message
-    if request.user.is_authenticated:
-        messages.info(request, f'You are already logged in as {request.user.username}.')
-    
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            messages.success(request, f'Welcome back, {user.username}!')
-            # Just stay on login page after successful login for now
-            return render(request, 'accounts/login.html')
-        else:
-            messages.error(request, 'Invalid username or password.')
-    
-    return render(request, 'accounts/login.html')
+# Import forms and models from the accounts app
+from accounts.forms import RegisterForm, LoginForm, BlogForm, ArtworkForm, CommentForm
+from accounts.models import Blog, Artwork, Comment
 
+# Register
 def register_view(request):
-    """Handle user registration"""
-    # Don't redirect if already authenticated, just show a message
-    if request.user.is_authenticated:
-        messages.info(request, f'You are already logged in as {request.user.username}.')
-    
     if request.method == 'POST':
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        password1 = request.POST.get('password1')
-        password2 = request.POST.get('password2')
-        
-        # Debug: Print received data
-        print(f"DEBUG: Registration attempt - Username: {username}, Email: {email}")
-        
-        # Validation
-        if password1 != password2:
-            messages.error(request, 'Passwords do not match.')
-            return render(request, 'accounts/register.html')
-        
-        if len(password1) < 8:
-            messages.error(request, 'Password must be at least 8 characters long.')
-            return render(request, 'accounts/register.html')
-        
-        if User.objects.filter(username=username).exists():
-            messages.error(request, 'Username already exists.')
-            return render(request, 'accounts/register.html')
-        
-        if User.objects.filter(email=email).exists():
-            messages.error(request, 'Email already registered.')
-            return render(request, 'accounts/register.html')
-        
-        # Create new user
-        try:
-            print(f"DEBUG: About to create user...")
-            user = User.objects.create_user(
-                username=username,
-                email=email,
-                password=password1,
-                first_name=first_name,
-                last_name=last_name
-            )
-            print(f"DEBUG: User created successfully - ID: {user.id}, Username: {user.username}")
-            
-            # Verify user was saved
-            saved_user = User.objects.get(id=user.id)
-            print(f"DEBUG: User verification - Found user: {saved_user.username}")
-            
-            messages.success(request, 'Account created successfully! Please log in.')
-            return redirect('accounts:login')
-        except Exception as e:
-            print(f"DEBUG: Error creating user: {e}")
-            messages.error(request, 'Error creating account. Please try again.')
-    
-    return render(request, 'accounts/register.html')
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Account created successfully!")
+            return redirect('login')
+    else:
+        form = RegisterForm()
+    return render(request, 'accounts/register.html', {'form': form})
 
+# Login
+def login_view(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                messages.error(request, "Invalid username or password.")
+    else:
+        form = LoginForm()
+    return render(request, 'accounts/login.html', {'form': form})
+
+# Logout
 def logout_view(request):
-    """Handle user logout"""
-    if request.user.is_authenticated:
-        logout(request)
-        messages.success(request, 'You have been logged out successfully.')
-    return redirect('accounts:login')
+    logout(request)
+    return redirect('login')
 
+# Blogs
+@login_required
+def create_blog(request):
+    if request.method == 'POST':
+        form = BlogForm(request.POST)
+        if form.is_valid():
+            blog = form.save(commit=False)
+            blog.author = request.user  # your model uses 'author', not 'user'
+            blog.save()
+            return redirect('home')
+    else:
+        form = BlogForm()
+    return render(request, 'accounts/blog_form.html', {'form': form})
+
+# Artworks
+@login_required
+def upload_artwork(request):
+    if request.method == 'POST':
+        form = ArtworkForm(request.POST, request.FILES)
+        if form.is_valid():
+            artwork = form.save(commit=False)
+            artwork.artist = request.user  # your model uses 'artist', not 'user'
+            artwork.save()
+            return redirect('home')
+    else:
+        form = ArtworkForm()
+    return render(request, 'accounts/artwork_form.html', {'form': form})
+
+# Comments
+@login_required
+def add_comment(request, blog_id):
+    blog = get_object_or_404(Blog, id=blog_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user  # your model uses 'author', not 'user'
+            comment.blog = blog
+            comment.save()
+            return redirect('blog_detail', blog_id=blog.id)
+    else:
+        form = CommentForm()
+    return render(request, 'accounts/comment_form.html', {'form': form, 'blog': blog})
