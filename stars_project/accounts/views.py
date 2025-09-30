@@ -14,7 +14,7 @@ def register_view(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Account created successfully!")
-            return redirect('login')
+            return redirect('accounts:login')
     else:
         form = RegisterForm()
     return render(request, 'accounts/register.html', {'form': form})
@@ -29,7 +29,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')
+                return redirect('accounts:login')  # Temporary redirect until home page exists
             else:
                 messages.error(request, "Invalid username or password.")
     else:
@@ -39,7 +39,7 @@ def login_view(request):
 # Logout
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('accounts:login')
 
 # Blogs
 @login_required
@@ -50,7 +50,7 @@ def create_blog(request):
             blog = form.save(commit=False)
             blog.author = request.user  # your model uses 'author', not 'user'
             blog.save()
-            return redirect('home')
+            return redirect('accounts:login')  # Temporary redirect until home page exists
     else:
         form = BlogForm()
     return render(request, 'accounts/blog_form.html', {'form': form})
@@ -64,7 +64,7 @@ def upload_artwork(request):
             artwork = form.save(commit=False)
             artwork.artist = request.user  # your model uses 'artist', not 'user'
             artwork.save()
-            return redirect('home')
+            return redirect('accounts:login')  # Temporary redirect until home page exists
     else:
         form = ArtworkForm()
     return render(request, 'accounts/artwork_form.html', {'form': form})
