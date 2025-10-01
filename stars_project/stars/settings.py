@@ -77,14 +77,14 @@ WSGI_APPLICATION = 'stars.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'stars_db',
-        'USER': 'root',  # XAMPP default
-        'PASSWORD': '',  # XAMPP default (empty)
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',  # XAMPP default
+        'PASSWORD': 'IoeNPpa2NWrcEuqu',  # XAMPP default (empty)
+        'HOST': 'db.aafzluewbkzelfkvdegk.supabase.co',
+        'PORT': '5432',
         'OPTIONS': {
-            'sql_mode': 'STRICT_TRANS_TABLES',
+            'sslmode': 'require',
         }
     }
 }

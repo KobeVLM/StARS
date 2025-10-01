@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 #For blog posts; Blogs are associated with a user
 class Blog(models.Model):
+    blogId = models.AutoField(primary_key=True, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blogs")
     title = models.CharField(max_length=100)
     description = models.TextField()
@@ -16,6 +17,7 @@ class Blog(models.Model):
 
 #For artworks; Artworks are associated with a user
 class Artwork(models.Model):
+    artId = models.AutoField(primary_key=True, unique=True)
     artist = models.ForeignKey(User, on_delete=models.CASCADE, related_name="artworks")
     title = models.CharField(max_length=50)
     description = models.TextField()
@@ -27,6 +29,7 @@ class Artwork(models.Model):
 
 #For comments; Comments are associated with a user, blog post (can be empty), and artwork (can be empty)
 class Comment(models.Model):
+    commentId = models.AutoField(primary_key=True, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
     content = models.TextField()
     likes = models.PositiveIntegerField(default=0)
@@ -38,6 +41,7 @@ class Comment(models.Model):
 
 #For tags; Tags are associated with blogs or artwork/s
 class Tag(models.Model):
+    tagId = models.AutoField(primary_key=True, unique=True)
     name = models.CharField(max_length=30, unique=True)
     blogs = models.ManyToManyField(Blog, blank=True, related_name="tags")
     artworks = models.ManyToManyField(Artwork, blank=True, related_name="tags")
@@ -47,6 +51,7 @@ class Tag(models.Model):
 
 #For favorites or bookmarks; Favorites are associated with a blog or artwork/s
 class Favorite(models.Model):
+    favoriteId = models.AutoField(primary_key=True, unique=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="favorites")
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, null=True, blank=True, related_name="favorites")
     artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE, null=True, blank=True, related_name="favorites")
