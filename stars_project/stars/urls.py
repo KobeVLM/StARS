@@ -19,8 +19,11 @@ from django.urls import path, include
 from django.shortcuts import redirect
 
 def home_redirect(request):
-    """Redirect home page to accounts login"""
-    return redirect('accounts:login')
+    """Redirect home page to landing page"""
+    if request.user.is_authenticated:
+        return redirect('accounts:landing')
+    else:
+        return redirect('accounts:login')
 
 urlpatterns = [
     path('', home_redirect, name='home'),
