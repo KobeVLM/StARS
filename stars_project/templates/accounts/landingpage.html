@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Artist Space</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'landingpage.css' %}">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <header class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="logo-bg">
+                    <!-- Palette SVG icon -->
+                    <svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke="#fff" stroke-width="2" fill="#6366f1"/>
+                        <circle cx="8" cy="10" r="1.5" fill="#fff"/>
+                        <circle cx="16" cy="10" r="1.5" fill="#fff"/>
+                        <circle cx="12" cy="15" r="1.5" fill="#fff"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="site-title">Student Artist Space</h1>
+                    <p class="site-desc">Create • Share • Inspire</p>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="user-level">
+                    <span class="star">&#11088;</span>
+                    <span class="level-label">Level {{ level }}</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%;"></div>
+                    </div>
+                    <span class="badge"><span class="trophy">&#127942;</span> {{ xp }} XP</span>
+                </div>
+                <div class="user-menu">
+                    <img src="https://placehold.co/40x40" alt="Avatar" class="avatar">
+                    <span class="username">{{ user.username }}</span>
+                    <div class="dropdown-menu">
+                        <a href="#">Profile</a>
+                        <a href="#">Settings</a>
+                        <a href="{% url 'accounts:logout' %}">Log out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="layout-flex">
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav">
+            <button class="nav-btn active">
+                <span class="nav-icon">&#8962;</span>
+                <span class="nav-label">Home</span>
+            </button>
+            <button class="nav-btn">
+                <span class="nav-icon">&#128269;</span>
+                <span class="nav-label">Browse</span>
+            </button>
+            <button class="nav-btn">
+                <span class="nav-icon">&#8682;</span>
+                <span class="nav-label">Upload</span>
+            </button>
+            <button class="nav-btn">
+                <span class="nav-icon">&#128100;</span>
+                <span class="nav-label">Profile</span>
+            </button>
+        </nav>
+
+        <!-- Desktop Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <button class="sidebar-btn active">
+                    <span class="sidebar-icon">&#8962;</span>Home</button>
+                <button class="sidebar-btn">
+                    <span class="sidebar-icon">&#128269;</span> Browse </button>
+                <button class="sidebar-btn">
+                    <span class="sidebar-icon">&#8682;</span> Upload</button>
+                <button class="sidebar-btn">
+                    <span class="sidebar-icon">&#128100;</span> Profile </button>
+            </nav>
+            <div class="quick-stats">
+                <h3>Quick Stats</h3>
+                <div class="stats-list">
+                    <div class="stat-row">
+                        <span>Artwork Created</span>
+                        <span class="stat-value">{{ artwork_created }}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>OCs Drawn</span>
+                        <span class="stat-value">{{ ocs_drawn }}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Badges Earned</span>
+                        <span class="stat-value"></span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Replace this with your page content -->
+            <div class="content-placeholder">
+                <h2>Welcome, {{ user.first_name|default:user.username }}!</h2>
+                <p>This is your dashboard. Use the navigation to explore features.</p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

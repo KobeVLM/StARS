@@ -79,9 +79,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
-        'USER': 'postgres',  # XAMPP default
-        'PASSWORD': 'IoeNPpa2NWrcEuqu',  # XAMPP default (empty)
-        'HOST': 'db.aafzluewbkzelfkvdegk.supabase.co',
+        'USER': 'postgres.aafzluewbkzelfkvdegk',
+        'PASSWORD': 'IoeNPpa2NWrcEuqu',
+        'HOST': 'aws-1-ap-southeast-1.pooler.supabase.com',
         'PORT': '5432',
         'OPTIONS': {
             'sslmode': 'require',
