@@ -4,7 +4,7 @@ A small Django project to help students and emerging artists practice, share, an
 
 ## Quick overview
 
-- Project: StARS (Student ARtS)
+- Project: StARS (Student Art Sharing System)
 - Purpose: Provide a simple social platform for students/artists to post practice work, blog entries, and receive feedback.
 - Stack: Python, Django, SQLite (default)
 
@@ -14,50 +14,80 @@ A small Django project to help students and emerging artists practice, share, an
 - Django 4.x/5.x (project currently uses a fresh Django install)
 - PostgreSQL (default dev database)
 
-## Local setup (Windows)
+## Setup & run instructions
 
-All commands below assume you're in the repository root. The project Django folder is `stars_project`.
+Instructions below assume someone has just cloned the repository and wants to run the project locally on Windows for the first time. We'll use the `stars_project` folder as the Django project root.
 
-1. Create and activate virtualenv
+1. Open a terminal and change into the project folder
 
 ```powershell
-cd stars_project
+cd path\to\repo\stars_project
+```
+
+2. Create a Python virtual environment and activate it
+
+PowerShell (recommended):
+
+```powershell
 python -m venv venv
 venv\Scripts\Activate.ps1
 ```
 
-If using cmd.exe instead of PowerShell:
+Command Prompt (cmd.exe):
 
 ```cmd
+python -m venv venv
 venv\Scripts\activate
 ```
 
-2. Install project dependencies
+3. Install dependencies
+
+If the repository contains `requirements.txt`:
 
 ```powershell
-pip install -r requirements.txt  # if present
-pip install django
+pip install -r requirements.txt
 ```
 
-3. Apply database migrations
+If not, install Django and the common DB packages used by the project:
+
+```powershell
+pip install django psycopg2-binary dj-database-url
+```
+
+4. Configure environment variables (optional)
+
+If you're using Supabase or another Postgres DB, set `DATABASE_URL` in your environment before running migrations. Example (PowerShell):
+
+```powershell
+#$env:DATABASE_URL = '<your-postgres-connection-uri>'  # one-time for current session
+setx DATABASE_URL "<your-postgres-connection-uri>"   # persist for the user (new shells)
+```
+
+5. Apply database migrations
 
 ```powershell
 python manage.py migrate
 ```
 
-4. (Optional) Create admin user
+6. (Optional) Create an admin user for the Django admin
 
 ```powershell
 python manage.py createsuperuser
 ```
 
-5. Run development server
+7. Run the development server
 
 ```powershell
 python manage.py runserver
 ```
 
-Visit http://127.0.0.1:8000/ in your browser.
+Open your browser to http://127.0.0.1:8000/ to see the site.
+
+Troubleshooting quick tips:
+
+- If you see import errors, ensure your virtualenv is activated and packages installed.
+- If migrations fail against Supabase/Postgres, verify `DATABASE_URL` and that your Supabase DB allows external connections.
+- For persistent environment variables in PowerShell, use `setx` and restart your terminal.
 
 ## Project structure (important files)
 
@@ -133,49 +163,3 @@ Code review:
 - All pull requests require at least one approving review from a code owner.
 - Keep discussions respectful and focused on the code.
 - Small, well-scoped PRs are easier to review and land quickly.
-
-## Development workflow
-
-- Branches: `feature/<short-description>`, `fix/<short-description>`, `docs/<short-description>`
-- Commits: Use Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`, etc.)
-
-Before creating a PR:
-
-1. Pull the latest main
-
-```powershell
-git checkout main; git pull origin main
-git checkout -b feature/your-feature
-```
-
-2. Run the app locally and make sure tests (if any) pass.
-
-## Commands (common)
-
-```powershell
-cd stars_project
-python manage.py runserver
-python manage.py makemigrations
-python manage.py migrate
-python manage.py createsuperuser
-python manage.py startapp app_name
-```
-
-## Contributing
-
-- Fork the repo
-- Create a feature branch
-- Make changes and write tests where appropriate
-- Open a PR with a clear description and testing steps
-
-## License
-
-No license is currently specified. Add a LICENSE file (e.g., MIT) if you intend to make this project open source.
-
----
-
-If you'd like, I can:
-
-- add a `requirements.txt` (minimal: `Django`),
-- add a `LICENSE` file (MIT template), or
-- fill in team member names/emails and the deployed URL.
