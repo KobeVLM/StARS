@@ -6,7 +6,6 @@ A small Django project to help students and emerging artists practice, share, an
 
 - Project: StARS (Student Art Sharing System)
 - Purpose: Provide a simple social platform for students/artists to post practice work, blog entries, and receive feedback.
-- Stack: Python, Django, SQLite (default)
 
 ## Tech stack
 
@@ -16,15 +15,23 @@ A small Django project to help students and emerging artists practice, share, an
 
 ## Setup & run instructions
 
-Instructions below assume someone has just cloned the repository and wants to run the project locally on Windows for the first time. We'll use the `stars_project` folder as the Django project root.
+1. Clone the repository and enter the project folder
 
-1. Open a terminal and change into the project folder
+PowerShell:
 
 ```powershell
-cd path\to\repo\stars_project
+git clone https://github.com/KobeVLM/CSIT327-G6-StARS.git
+cd CSIT327-G6-StARS\stars_project
 ```
 
-2. Create a Python virtual environment and activate it
+Command Prompt (cmd.exe):
+
+```cmd
+git clone https://github.com/KobeVLM/CSIT327-G6-StARS.git
+cd CSIT327-G6-StARS\stars_project
+```
+
+2. Create and activate a Python virtual environment
 
 PowerShell (recommended):
 
@@ -48,19 +55,10 @@ If the repository contains `requirements.txt`:
 pip install -r requirements.txt
 ```
 
-If not, install Django and the common DB packages used by the project:
+If not, install Django and common DB packages:
 
 ```powershell
 pip install django psycopg2-binary dj-database-url
-```
-
-4. Configure environment variables (optional)
-
-If you're using Supabase or another Postgres DB, set `DATABASE_URL` in your environment before running migrations. Example (PowerShell):
-
-```powershell
-#$env:DATABASE_URL = '<your-postgres-connection-uri>'  # one-time for current session
-setx DATABASE_URL "<your-postgres-connection-uri>"   # persist for the user (new shells)
 ```
 
 5. Apply database migrations
@@ -86,7 +84,6 @@ Open your browser to http://127.0.0.1:8000/ to see the site.
 Troubleshooting quick tips:
 
 - If you see import errors, ensure your virtualenv is activated and packages installed.
-- If migrations fail against Supabase/Postgres, verify `DATABASE_URL` and that your Supabase DB allows external connections.
 - For persistent environment variables in PowerShell, use `setx` and restart your terminal.
 
 ## Project structure (important files)
