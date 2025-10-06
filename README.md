@@ -65,7 +65,7 @@ Open http://127.0.0.1:8000/ in your browser.
 Please replace the placeholders with real names/emails for your team members.
 
 - Kobe (Lead) — KobeVLM, email: your-email@domain
-- Member 2 — Name, role, email
+- Elaiza Jane R. Moreno(developer), FrontEnd Developer, elaizajane.moreno@cit.edu
 - Member 3 — Name, role, email
 
 ## Deployment
