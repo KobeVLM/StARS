@@ -4,18 +4,23 @@ A small Django project to help students and emerging artists practice, share, an
 
 ## Quick overview
 
-- Project: StARS (Student Art Sharing System)
-- Purpose: Provide a simple social platform for students/artists to post practice work, blog entries, and receive feedback.
+- Project: **STARS: Student Artist Space**: An Art-Sharing Platform for Students
+- Purpose: STARS **(Student Artist Space)** is a gamified art-sharing platform designed to help students and beginner artists build consistent creative habits in a supportive and collaborative environment. Unlike traditional art platforms that focus on professional exposure or competition, STARS emphasizes learning, sharing, and community engagement. By integrating gamification and peer interaction, the platform encourages motivation, growth, and confidence—empowering emerging artists to develop their skills while celebrating creativity free from external pressure.
 
 ## Tech stack
 
 - Python 3.8+
-- Django 4.x/5.x (project currently uses a fresh Django install)
+- Django 4.x/5.x
 - PostgreSQL (default dev database)
 
 ## Setup & run instructions
 
 1. Clone the repository and enter the project folder (CMD):
+
+```cmd
+git clone https://github.com/KobeVLM/CSIT327-G6-StARS.git
+cd CSIT327-G6-StARS\stars_project
+```
 
 ```cmd
 git clone https://github.com/KobeVLM/CSIT327-G6-StARS.git
