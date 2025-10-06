@@ -1,10 +1,9 @@
 # StARS
 
-A small Django project to help students and emerging artists practice, share, and grow in a supportive, low-pressure environment.
+- **STARS: Student Artist Space**: An Art-Sharing Platform for Students
 
-## Quick overview
+## Purpose
 
-- Project: **STARS: Student Artist Space**: An Art-Sharing Platform for Students
 - Purpose: STARS **(Student Artist Space)** is a gamified art-sharing platform designed to help students and beginner artists build consistent creative habits in a supportive and collaborative environment. Unlike traditional art platforms that focus on professional exposure or competition, STARS emphasizes learning, sharing, and community engagement. By integrating gamification and peer interaction, the platform encourages motivation, growth, and confidence—empowering emerging artists to develop their skills while celebrating creativity free from external pressure.
 
 ## Tech stack
