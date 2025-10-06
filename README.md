@@ -62,11 +62,9 @@ Open http://127.0.0.1:8000/ in your browser.
 
 ## Team
 
-Please replace the placeholders with real names/emails for your team members.
-
-- Kobe (Lead) — KobeVLM, email: your-email@domain
-- Member 2 — Name, role, email
-- Member 3 — Name, role, email
+- Simon Jay D. Lugatiman (**Lead Developer**) — simonjay.lugatiman@cit.edu
+- Elaiza Jane R. Moreno (**Frontend Developer**) — elaizajane.moreno@cit.edu
+- Kobe Vincent L. Marikit (**Backend Developer**) — kobevincent.marikit@cit.edu
 
 ## Deployment
 
@@ -76,11 +74,17 @@ Please replace the placeholders with real names/emails for your team members.
 
 This project follows simple Git conventions to keep history clean and collaboration easy. Please follow these guidelines when creating branches, writing commits, and opening pull requests.
 
-Branch naming:
+Branch naming conventions:
 
-- Features: `feature/<short-description>` (example: `feature/user-authentication`)
-- Bug fixes: `fix/<short-description>` (example: `fix/login-validation`)
-- Documentation: `docs/<short-description>` (example: `docs/update-readme`)
+- **Features**: `feature/<short-description>` (e.g., `feature/user-authentication`)
+- **Bug fixes**: `fix/<short-description>` (e.g., `fix/login-validation`)
+- **Documentation**: `docs/<short-description>` (e.g., `docs/update-readme`)
+- **Chores/Maintenance**: `chore/<short-description>` (e.g., `chore/update-dependencies`)
+- **Refactoring**: `refactor/<short-description>` (e.g., `refactor/cleanup-models`)
+- **Tests**: `test/<short-description>` (e.g., `test/user-model`)
+- **Style**: `style/<short-description>` (e.g., `style/format-templates`)
+
+Use these branch prefixes to keep the repository organized and make the purpose of each branch clear.
 
 Commit messages (Conventional Commits):
 
