@@ -15,76 +15,39 @@ A small Django project to help students and emerging artists practice, share, an
 
 ## Setup & run instructions
 
-1. Clone the repository and enter the project folder
-
-PowerShell:
-
-```powershell
-git clone https://github.com/KobeVLM/CSIT327-G6-StARS.git
-cd CSIT327-G6-StARS\stars_project
-```
-
-Command Prompt (cmd.exe):
+1. Clone the repository and enter the project folder (CMD):
 
 ```cmd
 git clone https://github.com/KobeVLM/CSIT327-G6-StARS.git
 cd CSIT327-G6-StARS\stars_project
 ```
 
-2. Create and activate a Python virtual environment
-
-PowerShell (recommended):
-
-```powershell
-python -m venv venv
-venv\Scripts\Activate.ps1
-```
-
-Command Prompt (cmd.exe):
+2. Create and activate a Python virtual environment (CMD):
 
 ```cmd
 python -m venv venv
 venv\Scripts\activate
 ```
 
-3. Install dependencies
+3. Install dependencies (CMD):
 
-If the repository contains `requirements.txt`:
-
-```powershell
+```cmd
 pip install -r requirements.txt
 ```
 
-If not, install Django and common DB packages:
+4. Apply database migrations (CMD):
 
-```powershell
-pip install django psycopg2-binary dj-database-url
-```
-
-5. Apply database migrations
-
-```powershell
+```cmd
 python manage.py migrate
 ```
 
-6. (Optional) Create an admin user for the Django admin
+6. Run the development server (CMD):
 
-```powershell
-python manage.py createsuperuser
-```
-
-7. Run the development server
-
-```powershell
+```cmd
 python manage.py runserver
 ```
 
-Open your browser to http://127.0.0.1:8000/ to see the site.
-
-Troubleshooting quick tips:
-
-- If you see import errors, ensure your virtualenv is activated and packages installed.
-- For persistent environment variables in PowerShell, use `setx` and restart your terminal.
+Open http://127.0.0.1:8000/ in your browser.
 
 ## Project structure (important files)
 
